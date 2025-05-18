@@ -1,0 +1,14 @@
+- alias: "Kita-Morgenroutine um 6:40 Uhr"
+  trigger:
+    - platform: time
+      at: "06:40:00"
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+  action:
+    - service: script.kita_morgenroutine

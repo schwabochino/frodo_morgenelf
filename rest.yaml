@@ -1,0 +1,24 @@
+- resource: https://api.openai.com/v1/chat/completions
+  method: POST
+  headers:
+    Content-Type: application/json
+    Authorization: "Bearer !secret openai_api_key"
+  payload: >
+    {
+      "model": "gpt-4",
+      "messages": [
+        {
+          "role": "system",
+          "content": "Du bist ein witziger, kinderfreundlicher Sprecher, der 4-jährige Kinder morgens für die Kita motiviert."
+        },
+        {
+          "role": "user",
+          "content": "Bitte erinnere Theo und Keno auf lustige, freche und motivierende Art, dass sie heute in die Kita gehen. Sie sollen nach dem Frühstück Zähne putzen, sich waschen und anziehen. Halte den Text unter 50 Sekunden gesprochen."
+        }
+      ],
+      "temperature": 0.9
+    }
+  scan_interval: 86400
+  sensor:
+    - name: kita_morgen_gpt_text
+      value_template: "{{ value_json.choices[0].message.content }}"

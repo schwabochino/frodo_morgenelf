@@ -1,0 +1,9 @@
+kita_morgenroutine:
+  alias: "Kita Morgenroutine Theo & Keno"
+  sequence:
+    - service: tts.piper_say
+      data:
+        entity_id: media_player.kueche
+        message: >
+          {{ state('sensor.kita_morgen_gpt_text') }}
+  mode: single
